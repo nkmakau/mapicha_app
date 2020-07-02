@@ -1,19 +1,16 @@
 //import express framework
-const express =require('express')
-const { response } = require('express')
+const express = require('express')
 
 //initialize express
 const app = express()
 
-//Route to index page
-app.get('/', (req, res)=>{
-    response.send('<h1> Welcome to Mapicha App</h1>')
-})
+//Set a static folder
+app.use(express.static('public'))
 
 //Define the port number
-const PORT = 7000
+const PORT = 8000
 
-app.listen(PORT, function() {
-    console.log(`Server is listenining on port ${PORT}`)
+app.listen(PORT, ()=> {
+    console.log(`Server is listening on port ${PORT}`)
 })
 
