@@ -5,7 +5,7 @@ const path = require('path')
 const storage = multer.diskStorage({
     destination: './public/images/',
     filename: function (req, file, cb) {
-        cb(null, file.field_name + '-' + Date.now() + path.extname(file.originalname))
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
 })
 
@@ -15,11 +15,11 @@ const upload = multer({
     limits: { fileSize: 1000000 },
     fileFilter: function(req, file, cb){
         //Allowed extensions
-        let fileTypes = /jpeg|jpg|png|gif/
+        let fileType = /jpeg|jpg|png|gif/
         //check file extension
-        let extname = fileTypes.test(path.extname(file.originalname).toLowerCase())
+        let extname = fileType.test(path.extname(file.originalname).toLowerCase())
         //Check mime type
-        let mimetype = fileTypes.test(file.mimetype)
+        let mimetype = fileType.test(file.mimetype)
 
         if (mimetype && extname){
             return cb(null, true)
